@@ -1,6 +1,6 @@
 const GameController = (() => {
    const getComputerChoice = () => {
-      const choices = ['Rock', 'Paper', 'Scissors']
+      const choices = ['rock', 'paper', 'scissors']
       const randomIndex = Math.floor(Math.random() * choices.length);
       return choices[randomIndex]
    }
@@ -8,11 +8,11 @@ const GameController = (() => {
    const getPlayerChoice = () => {
       let playerChoice
       while (true) {
-         playerChoice = prompt('Choose your sign:')
-         if (playerChoice === "Rock" || playerChoice === "Paper" || playerChoice === "Scissors") {
+         playerChoice = prompt('Choose your sign:').toLowerCase();
+         if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
             return playerChoice;
       }
-      alert("Invalid choice. Please choose Rock, Paper or Scissors.")
+      alert("Invalid choice. Please choose rock, paper or scissors.")
       }
    }
 
@@ -22,9 +22,9 @@ const GameController = (() => {
       }
       
       if (
-         (playerChoice === "Rock" && computerChoice === "Scissors") ||
-         (playerChoice === "Paper" && computerChoice === "Rock") ||
-         (playerChoice === "Scissors" && computerChoice === "Paper")
+         (playerChoice === "rock" && computerChoice === "scissors") ||
+         (playerChoice === "paper" && computerChoice === "rock") ||
+         (playerChoice === "scissors" && computerChoice === "paper")
       ) {
          return "player";
       }
@@ -54,9 +54,12 @@ const GameController = (() => {
          }
 
          console.log(`Score:\nYou: ${playerScore}\nThe computer: ${computerScore}`);
-         const playAgain = prompt('Do you want to play again? (yes or no)');
-         if (playAgain.toLowerCase() !== "yes") {
-            console.log("Thanks for playing!");
+         if (playerScore === 3 || computerScore === 3){
+            if (playerScore == 3) {
+               console.log(`End result: ${playerScore} - ${computerScore}. You win`);
+            } else if (computerScore == 3) {
+               console.log(`End result: ${playerScore} - ${computerScore}. You lost`);
+            }
             break;
          }
       }
